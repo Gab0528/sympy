@@ -1,0 +1,48 @@
+In [1]: cos(x) * (1 + x)
+Out[1]: (x + 1)⋅cos(x)
+In [2]: diff(_1, x)  # Derivada primera con respecto a x
+Out[2]: -(x + 1)⋅sin(x) + cos(x)
+In [3]: diff(_, x)  # Derivada primera con respecto a x de lo anterior
+Out[3]: -(x + 1)⋅cos(x) - 2⋅sin(x)
+In [4]: diff(_1, x, 2)  # Derivada segunda con respecto a x
+Out[4]: -(x + 1)⋅cos(x) - 2⋅sin(x)
+In [5]: diff(_1, x, x)  # Otra forma de escribir lo mismo
+Out[5]: -(x + 1)⋅cos(x) - 2⋅sin(x)
+In [6]: diff(log(x * y), y)  # Derivada parcial con respecto a y
+Out[6]:
+1
+─
+y
+In [7]: diff(x * y * log(x * y), x, y)  # Derivada parcial con respecto a x e y
+Out[7]: log(x⋅y) + 2
+También se pueden derivar funciones simbólicas, y se respeta la regla de la cadena:
+
+In [8]: diff(f(x) * sin(x), x)
+Out[8]:
+                     d
+f(x)⋅cos(x) + sin(x)⋅──(f(x))
+                     dx   
+In [9]: diff(f(g(x)), x)
+Out[9]:
+d        ⎛ d        ⎞│
+──(g(x))⋅⎜───(f(ξ₁))⎟│
+dx       ⎝dξ₁       ⎠│ξ₁=g(x)   
+In [10]: diff(f(x * y), y)
+Out[10]:
+  ⎛ d        ⎞│
+x⋅⎜───(f(ξ₁))⎟│
+  ⎝dξ₁       ⎠│ξ₁=x⋅y
+In [11]: diff(exp(f(x)), x, 2)
+Out[11]:
+              2           2
+ f(x) d            f(x)  d
+ℯ    ⋅──(f(x))  + ℯ    ⋅───(f(x))
+      dx                  2
+                        dx       
+In [12]: diff(f(x), x, 3)
+Out[12]:
+  3
+ d
+───(f(x))
+  3
+dx
